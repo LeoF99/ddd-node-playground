@@ -1,0 +1,97 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb-typescript/base",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "prettier",
+    "plugin:boundaries/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "sourceType": "module",
+    "project": "tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "prettier", "boundaries"],
+  "rules": {
+    "@typescript-eslint/prefer-readonly": [
+      "error",
+      { "onlyInlineLambdas": true }
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["warn"],
+    "class-methods-use-this": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/no-unresolved": "off",
+    "boundaries/element-types": [
+      2,
+      {
+        "default": "disallow",
+        "rules": [
+          {
+            "from": "domains",
+            "allow": ["domains"]
+          },
+          {
+            "from": "infrastructure",
+            "allow": ["infrastructure", "domains"]
+          },
+          {
+            "from": "application",
+            "allow": ["domains", "application"]
+          }
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    },
+    "boundaries/no-unknown-files": false,
+    "boundaries/no-unknown": false,
+    "boundaries/elements": [
+      {
+        "type": "configurations",
+        "mode": "file",
+        "pattern": "src/configurations/**/*.ts"
+      },
+      {
+        "type": "infrastructure",
+        "mode": "file",
+        "pattern": "src/infrastructure/**/*.ts"
+      },
+      {
+        "type": "domains",
+        "mode": "file",
+        "pattern": "src/domain/**/*.ts"
+      },
+      {
+        "type": "application",
+        "mode": "file",
+        "pattern": "src/application/**/*.ts"
+      }
+    ]
+  }
+}

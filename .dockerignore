@@ -1,0 +1,5 @@
+./*
+!./*.json
+!./.npmrc
+!./dist
+!./yarn.lock

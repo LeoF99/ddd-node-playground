@@ -1,0 +1,86 @@
+openapi: "3.0.2"
+info:
+  title: API Title
+  version: "1.0"
+paths:
+  /home:
+    get:
+      tags:
+        - /home
+      description: >-
+        Home!
+      responses:
+        '200':
+          description: Successful request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Home'
+        default:
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /hello:
+    post:
+      tags:
+        - /hello
+      description: >-
+        Returns greeting.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Greeting'
+        required: true
+      responses:
+        '200':
+          description: Successful request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Hello'
+        default:
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+servers:
+  - url: '/api'
+components:
+  schemas:
+    Hello:
+      properties:
+        msg:
+          type: string
+      required:
+        - msg
+    User:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    Home:
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    Error:
+      properties:
+        message:
+          type: string
+      required:
+        - message
+    Greeting:
+      required:
+        - greeting
+      properties:
+        greeting:
+          maxLength: 10
+          minLength: 2
+          type: string

@@ -58,6 +58,10 @@
           {
             "from": "application",
             "allow": ["domains", "application"]
+          },
+          {
+            "from": "configurations",
+            "allow": ["configurations", "domains", "application", "infrastructure"]
           }
         ]
       }

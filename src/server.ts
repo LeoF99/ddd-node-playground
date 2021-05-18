@@ -14,9 +14,7 @@ import App from './app';
 dotenv.config();
 
 const { ContextAsyncHooks } = traceability;
-const {
-  PORT
-} = process.env;
+const { PORT } = process.env;
 
 const app = new App({
   port: Number(PORT || 3333),
